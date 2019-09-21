@@ -10,7 +10,7 @@ class TodoListTest extends TestCase
     use DatabaseMigrations;
 
     /** @test */
-    public function an_authenticated_user_should_create_todo()
+    public function an_authenticated_user_can_create_todo()
     {
         $user = factory('App\User')->create();
 
@@ -41,7 +41,7 @@ class TodoListTest extends TestCase
     }
 
     /** @test */
-    public function an_authenticated_user_can_update()
+    public function an_authenticated_user_can_update_todo()
     {
         $user = factory('App\User')->create();
 
@@ -59,6 +59,20 @@ class TodoListTest extends TestCase
             $this->assertEquals('1', $todo->user_id);
         });
 
+    }
+
+    /** @test */
+    public function an_authenticated_user_can_show_his_todo()
+    {
+        $user = factory('App\User')->create();
+
+        $this->be($user);
+
+        $todo = factory('App\Todo')->create(['user_id' => $user->id]);
+
+        $this->get('todo/'.$todo->id)
+            ->assertSee($todo->title)
+            ->assertSee($todo->done);
     }
 
     /** @test */

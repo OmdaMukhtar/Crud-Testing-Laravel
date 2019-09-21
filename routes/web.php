@@ -23,6 +23,7 @@ Route::get('/todo', 'TodoController@index')->name('todo.index');
 Route::get('/todo/create', 'TodoController@create')->name('todo.create');
 Route::post('/todo', 'TodoController@store')->name('todo.store');
 Route::delete('/todo/{todo}/', 'TodoController@destroy')->name('todo.destroy');
-Route::get('/todo/{todo}/', 'TodoController@edit')->name('todo.edit');
+Route::get('/todo/{todo}/edit', 'TodoController@edit')->name('todo.edit');
+Route::get('/todo/{todo}', 'TodoController@show')->name('todo.show');
 Route::put('/todo/{todo}/', 'TodoController@update')->name('todo.update');
 Route::post('/todo/{todo}/markTodo', 'TodoController@markTodo')->name('todo.markTodo');
