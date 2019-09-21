@@ -23,6 +23,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        return view('todos.index')->with([
+            'todos' => \Auth::user()->todos()->get()
+        ]);
     }
 }
