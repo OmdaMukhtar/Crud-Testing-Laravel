@@ -17,12 +17,12 @@
                                         <input type="text" class="form-control"
                                             name="title"
                                             value="{{ $todo->title }}" />
+                                        <small class="text-danger">{{ $errors->first('title') }}</small>
                                     </div>
                                 </div>
                             </div>
                             <a  class="btn btn-primary" href="{{ route('todo.index') }}"><i class="fa fa-chevron-left"></i></a>
                             <button type="submit" class="btn btn-warning">Update</button>
-
                         </form>
                     </div>
                 </div>

@@ -91,4 +91,36 @@ class TodoListTest extends TestCase
         });
 
     }
+
+    ////////////////////////////////// Validation fields //////////////////////////////
+
+    /** @test */
+    public function a_todo_require_title_to_store()
+    {
+        $this->withExceptionHandling();
+
+        $user = factory('App\User')->create();
+
+        $this->be($user);
+
+        $todo = factory('App\Todo')->make(['title' => null]);
+
+        $this->post('todo/', $todo->toArray())
+            ->assertSessionHasErrors('title');
+    }
+
+    /** @test */
+    public function a_todo_require_title_to_update()
+    {
+        $this->withExceptionHandling();
+
+        $user = factory('App\User')->create();
+
+        $this->be($user);
+
+        $todo = factory('App\Todo')->create(['user_id' => $user->id]);
+
+        $this->put('todo/'.$todo->id, ['title' => null])
+            ->assertSessionHasErrors('title');
+    }
 }

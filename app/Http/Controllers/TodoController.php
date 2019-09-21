@@ -41,6 +41,10 @@ class TodoController extends Controller
      */
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'title' => 'required'
+        ]);
+
         $todo = new Todo();
         $todo->title = $request->title;
         $todo->user_id = \Auth::id();
@@ -84,6 +88,10 @@ class TodoController extends Controller
      */
     public function update(Request $request, Todo $todo)
     {
+        $this->validate($request, [
+            'title' => 'required'
+        ]);
+
         $todo->update($request->all());
         return redirect()->route('todo.index');
     }
