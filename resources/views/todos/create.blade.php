@@ -17,7 +17,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary">save</button>
+                            <a  class="btn btn-primary" href="{{ route('todo.index') }}"><i class="fa fa-chevron-left"></i></a>
+                            <button type="submit" class="btn btn-success">save</button>
                         </form>
                     </div>
                 </div>
