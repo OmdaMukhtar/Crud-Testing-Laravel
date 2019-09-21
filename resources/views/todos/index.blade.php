@@ -6,7 +6,7 @@
                 <div class="card">
                     <div class="card-header todo-header">
                         <h3 class="title">Todo List</h3>
-                        <button class="btn btn-primary">Create</button>
+                        <a class="btn btn-primary" href="{{ route('todo.create') }}">Create</a>
                     </div>
                     <div class="card-body">
                         <ul class="todo-list">
