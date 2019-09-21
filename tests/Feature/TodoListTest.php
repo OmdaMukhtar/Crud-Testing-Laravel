@@ -92,6 +92,24 @@ class TodoListTest extends TestCase
 
     }
 
+    /** @test */
+    public function an_authenticated_user_can_show_all_todo_list()
+    {
+        $user = factory('App\User')->create();
+
+        $this->be($user);
+
+        $todo1 = factory('App\Todo')->create(['title' => 'first todo', 'user_id' => $user->id]);
+        $todo2 = factory('App\Todo')->create(['title' => 'second todo', 'user_id' => $user->id]);
+        $todo3 = factory('App\Todo')->create(['title' => 'third todo', 'user_id' => $user->id]);
+
+        $this->get('todo/')
+            ->assertSeeText($todo1->title)
+            ->assertSeeText($todo2->title)
+            ->assertSeeText($todo3->title);
+
+    }
+
     ////////////////////////////////// Validation fields //////////////////////////////
 
     /** @test */
