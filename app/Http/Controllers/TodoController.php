@@ -46,9 +46,7 @@ class TodoController extends Controller
         $todo->user_id = \Auth::id();
         $todo->save();
 
-        return view('todos.index')->with([
-            'todos' => Todo::all()
-        ]);
+        return redirect()->route('todo.index');
     }
 
     /**
