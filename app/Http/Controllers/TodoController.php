@@ -19,7 +19,7 @@ class TodoController extends Controller
     public function index()
     {
         return view('todos.index')->with([
-            'todos' => Todo::all()
+            'todos' => \Auth::user()->todos()->get()
         ]);
     }
 
@@ -95,6 +95,14 @@ class TodoController extends Controller
     public function destroy(Todo $todo)
     {
         $todo->delete();
+        return redirect()->route('todo.index');
+    }
+
+    public function markTodo(Todo $todo)
+    {
+        $todo->done = !$todo->done;
+        $todo->save();
+
         return redirect()->route('todo.index');
     }
 }

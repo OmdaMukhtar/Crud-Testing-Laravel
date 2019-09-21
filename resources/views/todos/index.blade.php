@@ -18,9 +18,23 @@
                                     </h4>
                                     <div class="controls">
                                         @if($todo->done)
-                                            <a href="#" class="btn btn-success space"><i class="fa fa-hand-peace-o"></i></a>
+                                        <form id="frm-mark-todo-{{ $todo->id }}"
+                                                style="display:none"
+                                                action="{{ route('todo.markTodo', $todo) }}" method="POST">
+                                                @csrf
+                                            </form>
+                                            <button  class="btn btn-success space" onclick="markTodo({{ $todo->id }})">
+                                                <i class="fa fa-hand-peace-o"></i>
+                                            </button>
                                         @else
-                                            <a href="#" class="btn btn-warning space"><i class="fa fa-thumbs-o-down"></i></a>
+                                            <form id="frm-mark-todo-{{ $todo->id }}"
+                                                style="display:none"
+                                                action="{{ route('todo.markTodo', $todo) }}" method="POST">
+                                                @csrf
+                                            </form>
+                                            <button  class="btn btn-warning space" onclick="markTodo({{ $todo->id }})">
+                                                <i class="fa fa-thumbs-o-down"></i>
+                                            </button>
                                         @endif
 
                                         <button class="btn btn-danger space" onclick="deleteTodo({{ $todo->id }})">
@@ -47,12 +61,19 @@
 @endsection
 
 <script>
-    function deleteTodo(id){
+    function deleteTodo(id)
+    {
         if(confirm('Are you sure to delete this record ?')){
             event.preventDefault();
-            document.getElementById('frm-delete-'+id).submit();
+            document.getElementById('frm-delete-'+ id).submit();
         }else{
             event.preventDefault();
         }
+    }
+
+    function markTodo(id)
+    {
+        event.preventDefault();
+        document.getElementById('frm-mark-todo-'+ id).submit();
     }
 </script>

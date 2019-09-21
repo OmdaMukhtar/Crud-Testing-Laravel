@@ -54,9 +54,26 @@ class TodoListTest extends TestCase
             'done' => 1
         ]);
 
-        tap( $todo->fresh(), function($todo){
+        tap($todo->fresh(), function($todo){
             $this->assertEquals('my task', $todo->title);
             $this->assertEquals('1', $todo->user_id);
+        });
+
+    }
+
+    /** @test */
+    public function an_authenticated_user_can_mark_todo_as_done()
+    {
+        $user = factory('App\User')->create();
+
+        $this->be($user);
+
+        $todo = factory('App\Todo')->create(['done' => 0, 'user_id' => $user->id]);
+
+        $this->post('todo/'.$todo->id.'/markTodo');
+
+        tap($todo->fresh(), function($todo){
+            $this->assertEquals(1, $todo->done);
         });
 
     }
