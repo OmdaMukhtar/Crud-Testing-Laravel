@@ -11,16 +11,16 @@
                     <div class="card-body">
                         <ul class="todo-list">
                             @foreach ($todos as $todo)
-                                <li class="todo-list-item">
+                                <li class="todo-list-item" >
                                     <span>{{ $loop->iteration }}</span>
                                     <h4 class="title">
                                         <a href="#"> {{ $todo->title }} </a>
                                     </h4>
-                                    <div>
+                                    <div class="controls">
                                         @if($todo->done)
-                                            <a href="#" class="btn btn-success"><i class="fa fa-hand-peace-o"></i></a>
+                                            <a href="#" class="btn btn-success space"><i class="fa fa-hand-peace-o"></i></a>
                                         @else
-                                            <a href="#" class="btn btn-warning"><i class="fa fa-thumbs-o-down"></i></a>
+                                            <a href="#" class="btn btn-warning space"><i class="fa fa-thumbs-o-down"></i></a>
                                         @endif
                                         <a href="#" class="btn btn-danger"><i class="fa fa-remove"></i></a>
                                     </div>
@@ -33,4 +33,3 @@
         </div>
     </div>
 @endsection
-
