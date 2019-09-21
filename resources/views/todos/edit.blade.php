@@ -5,19 +5,22 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-header">
-                        create todo
+                        Update todo
                     </div>
                     <div class="card-body">
-                        <form action="{{ route('todo.store') }}" method="POST">
+                        <form action="{{ route('todo.update', $todo) }}" method="POST">
                             @csrf
+                            @method('put')
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="form-group">
-                                        <input type="text" class="form-control" name="title">
+                                        <input type="text" class="form-control"
+                                            name="title"
+                                            value="{{ $todo->title }}" />
                                     </div>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary">save</button>
+                            <button type="submit" class="btn btn-warning">Update</button>
                         </form>
                     </div>
                 </div>

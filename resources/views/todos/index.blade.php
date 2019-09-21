@@ -23,12 +23,18 @@
                                             <a href="#" class="btn btn-warning space"><i class="fa fa-thumbs-o-down"></i></a>
                                         @endif
 
-                                        <button class="btn btn-danger" onclick="deleteTodo({{ $todo->id }})"><i class="fa fa-remove"></i></button>
+                                        <button class="btn btn-danger space" onclick="deleteTodo({{ $todo->id }})">
+                                            <i class="fa fa-remove"></i>
+                                        </button>
                                         <form style="display:none" action="{{ route('todo.destroy', $todo) }}"
                                             id="frm-delete-{{ $todo->id }}" method="POST">
                                             @csrf
                                             @method('delete');
                                         </form>
+
+                                        <a href="{{ route('todo.edit', $todo) }}" class="btn btn-warning">
+                                            <i class="fa fa-edit"></i>
+                                        </a>
                                     </div>
                                 </li>
                             @endforeach

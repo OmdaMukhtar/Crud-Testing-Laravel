@@ -39,4 +39,25 @@ class TodoListTest extends TestCase
 
         $this->assertDatabaseMissing('todos', $todo->toArray());
     }
+
+    /** @test */
+    public function an_authenticated_user_can_update()
+    {
+        $user = factory('App\User')->create();
+
+        $this->be($user);
+
+        $todo = factory('App\Todo')->create(['user_id' => $user->id]);
+
+        $this->put('todo/'.$todo->id, [
+            'title' => 'my task',
+            'done' => 1
+        ]);
+
+        tap( $todo->fresh(), function($todo){
+            $this->assertEquals('my task', $todo->title);
+            $this->assertEquals('1', $todo->user_id);
+        });
+
+    }
 }

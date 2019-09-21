@@ -68,7 +68,9 @@ class TodoController extends Controller
      */
     public function edit(Todo $todo)
     {
-        //
+        return view('todos.edit')->with([
+            'todo' => $todo
+        ]);
     }
 
     /**
@@ -80,7 +82,8 @@ class TodoController extends Controller
      */
     public function update(Request $request, Todo $todo)
     {
-        //
+        $todo->update($request->all());
+        return redirect()->route('todo.index');
     }
 
     /**
