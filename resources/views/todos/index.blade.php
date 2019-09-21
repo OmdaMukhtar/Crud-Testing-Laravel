@@ -14,7 +14,7 @@
                                 <li class="todo-list-item" >
                                     <span>{{ $loop->iteration }}</span>
                                     <h4 class="title">
-                                        <a href="#"> {{ $todo->title }} </a>
+                                        <a href="#" @if($todo->done) style="text-decoration: line-through;" @endif> {{ $todo->title }} </a>
                                     </h4>
                                     <div class="controls">
                                         @if($todo->done)
