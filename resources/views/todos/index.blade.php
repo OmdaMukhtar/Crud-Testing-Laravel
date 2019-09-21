@@ -22,7 +22,13 @@
                                         @else
                                             <a href="#" class="btn btn-warning space"><i class="fa fa-thumbs-o-down"></i></a>
                                         @endif
-                                        <a href="#" class="btn btn-danger"><i class="fa fa-remove"></i></a>
+
+                                        <button class="btn btn-danger" onclick="deleteTodo({{ $todo->id }})"><i class="fa fa-remove"></i></button>
+                                        <form style="display:none" action="{{ route('todo.destroy', $todo) }}"
+                                            id="frm-delete-{{ $todo->id }}" method="POST">
+                                            @csrf
+                                            @method('delete');
+                                        </form>
                                     </div>
                                 </li>
                             @endforeach
@@ -33,3 +39,14 @@
         </div>
     </div>
 @endsection
+
+<script>
+    function deleteTodo(id){
+        if(confirm('Are you sure to delete this record ?')){
+            event.preventDefault();
+            document.getElementById('frm-delete-'+id).submit();
+        }else{
+            event.preventDefault();
+        }
+    }
+</script>

@@ -14,7 +14,7 @@ class TodoListTest extends TestCase
     {
         $user = factory('App\User')->create();
 
-        $todo = factory('App\Todo')->make(['user_id' => $user->id]);
+        $todo = factory('App\Todo')->make();
 
         $this->be($user);
 
@@ -24,5 +24,19 @@ class TodoListTest extends TestCase
             ->assertSee($todo->title)
             ->assertSee($todo->done);
 
+    }
+
+    /** @test */
+    public function an_authenticated_user_can_delete_todo()
+    {
+        $user = factory('App\User')->create();
+
+        $this->be($user);
+
+        $todo = factory('App\Todo')->create(['user_id' => $user->id]);
+
+        $this->delete('todo/'.$todo->id);
+
+        $this->assertDatabaseMissing('todos', $todo->toArray());
     }
 }
