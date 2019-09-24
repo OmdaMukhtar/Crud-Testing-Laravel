@@ -2,7 +2,7 @@
 # CRUD [Todo list] Laravel PHPUnit Testing 
 ## Download Project
 ```
-git clone https://github.com/OmdaMukhtar/Crud-Testing-Laravel.git
+git clone https://github.com/OmdaMukhtar/CrudTestingLaravel.git
 ```
 
 ## Composer Update
